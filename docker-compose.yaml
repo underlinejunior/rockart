@@ -1,0 +1,54 @@
+version: '1.0'
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  db:
+    image: bitnami/mongodb
+    networks:
+      - app-tier
+    volumes:
+      - ./db/mongo/:/bitnami/mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MONGODB_USERNAME=root
+      - MONGODB_PASSWORD=baeldung
+      - MONGODB_DATABASE=maindb
+  web:
+    build: .
+    networks:
+      - app-tier
+    command: uvicorn index:app --reload --host=0.0.0.0 --port=4000
+    volumes:
+      - .:/code
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./.env
+  cache:
+    image: redis
+    networks:
+      - app-tier
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./db/mongo:/usr/local/etc/redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MONGODB_USERNAME=root
+      - MONGODB_PASSWORD=baeldung
+      - MONGODB_DATABASE=maindb
+#   django-q:
+#     build: .
+#     command: python manage.py qcluster
+#     volumes:
+#       - .:/code
+#     env_file:
+#       - ./deploy/env/local.env
+#     depends_on:
+#       db:
+#         condition: service_healthy

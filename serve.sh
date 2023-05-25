@@ -1,0 +1,1 @@
+concurrently "uvicorn index:app --reload --host=0.0.0.0 --port=${PORT:-5000}" "cd frontend && npm run serve" 

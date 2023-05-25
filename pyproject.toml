@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "rockart"
+version = "0.1.0"
+description = ""
+authors = ["Daniel Farias <daniel.dsfarias@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+opencv-contrib-python = "4.5.5.64"
+jpype1 = "^1.4.1"
+mako = "^1.2.4"
+python-multipart = "^0.0.6"
+aiofiles = "^23.1.0"
+uvicorn = "^0.21.1"
+fastapi = "^0.95.1"
+numpy = "^1.24.3"
+matplotlib = "^3.7.1"
+requests = "^2.28.2"
+pytest = "^7.3.1"
+pillow = "^9.5.0"
+uuid = "^1.30"
+python-dotenv = "^1.0.0"
+dropbox = "^11.36.0"
+bcrypt = "^4.0.1"
+mongoengine = "^0.27.0"
+unipath = "^1.1"
+pymongo = "^4.3.3"
+python-jose = "^3.3.0"
+passlib = "^1.7.4"
+redis = "^4.5.4"
+marshmallow = "^3.19.0"
+scikit-image = "^0.20.0"
+sendgrid = "^6.10.0"
+colorthief = "^0.2.1"
+js2py = "^0.74"
+opencv-python = "4.5.5.64"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
